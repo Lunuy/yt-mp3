@@ -1,0 +1,45 @@
+{
+  "name": "@lunuy/yt-mp3",
+  "version": "1.0.0",
+  "description": "Youtube mp3 downloader. (Album art support)",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lunuy/yt-mp3.git"
+  },
+  "keywords": [
+    "youtube",
+    "mp3",
+    "ytdl"
+  ],
+  "author": "Lunuy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lunuy/yt-mp3/issues"
+  },
+  "homepage": "https://github.com/Lunuy/yt-mp3#readme",
+  "devDependencies": {
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "dependencies": {
+    "@types/fluent-ffmpeg": "^2.1.18",
+    "@types/node": "^16.6.1",
+    "@types/node-fetch": "^2.5.12",
+    "@types/sharp": "^0.28.5",
+    "fluent-ffmpeg": "^2.1.2",
+    "musicbrainz-api": "^0.6.0",
+    "node-fetch": "^2.6.1",
+    "node-id3": "^0.2.3",
+    "sanitize-filename": "^1.6.3",
+    "sharp": "^0.28.3",
+    "ytdl-core": "^4.9.1",
+    "ytpl": "^2.2.3"
+  }
+}
