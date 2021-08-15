@@ -41,11 +41,13 @@ function setId3(songInfo: SongInfo, thumb: Buffer, filePath: string) {
 
 export interface Options {
     songInfoExtractor: SongInfoExtractor;
+    thumbSize: number;
 }
 
 class YtMp3 {
     private options: Options = {
-        songInfoExtractor: defaultExtractor
+        songInfoExtractor: defaultExtractor,
+        thumbSize: 4096
     };
 
     constructor(options: Partial<Options> = {}) {
@@ -72,8 +74,8 @@ class YtMp3 {
         )).buffer(); 
         const thumb = await sharp(videoThumb)
             .resize({
-                width: 256,
-                height: 256,
+                width: this.options.thumbSize,
+                height: this.options.thumbSize,
                 fit: sharp.fit.cover
             })
             .jpeg()
