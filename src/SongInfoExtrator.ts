@@ -25,7 +25,7 @@ export function normalExtractor(videoInfo: ytdl.videoInfo): SongInfo {
     const videoTitle = videoInfo.videoDetails.title;
     const [artist, title] = videoTitle
         .replace(/\([^()]+\)/g, '')
-        .replace(/\[[^[]]+\]/g, '')
+        .replace(/\[[^\[\]]+\]/g, '')
         .trim()
         .split(' - ');
     if(title) {
