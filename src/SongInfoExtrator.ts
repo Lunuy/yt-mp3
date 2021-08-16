@@ -67,7 +67,7 @@ export function createMusicBrainzExtractor(config?: IMusicBrainzConfig) {
         const title = recording.title;
         const artist = recording['artist-credit'][0].name;
         const album = release.title;
-        const year = release.date.slice(0, 4);
+        const year = release.date?.slice(0, 4) ?? '';
 
         return {
             title,
