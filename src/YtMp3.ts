@@ -61,7 +61,8 @@ class YtMp3 {
         const songInfo = implicitSongInfo
             ?? await this.options.songInfoExtractor(videoInfo);
 
-        const filePath = path.resolve(directoryPath, sanitize(songInfo.title, { replacement: '_' }) + '.mp3');
+        const fileName = sanitize(songInfo.title, { replacement: '_' }) + '.mp3';
+        const filePath = path.resolve(directoryPath, fileName);
 
         const stream = ytdl.downloadFromInfo(videoInfo, {
             filter: 'audioonly',
@@ -81,17 +82,21 @@ class YtMp3 {
             .jpeg()
             .toBuffer();
         await setId3(songInfo, thumb, filePath);
+
+        return fileName;
     }
 
     async downloadPlaylist(playlistId: string, directoryPath: string) {
         const playlist = await ytpl(playlistId);
+        const fileNames = [];
         for(const { id } of playlist.items)
-            await this.download(id, directoryPath);
+            fileNames.push(await this.download(id, directoryPath));
+        return fileNames;
     }
 
     async downloadPlaylistParrarel(playlistId: string, directoryPath: string) {
         const playlist = await ytpl(playlistId);
-        await Promise.all(playlist.items.map(({ id }) => this.download(id, directoryPath)));
+        return await Promise.all(playlist.items.map(({ id }) => this.download(id, directoryPath)));
     }
 }
 
